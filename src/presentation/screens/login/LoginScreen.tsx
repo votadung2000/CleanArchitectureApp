@@ -3,16 +3,13 @@ import { View, StyleSheet, TextInput } from 'react-native';
 import { useFormik } from 'formik';
 
 import {
-  Input,
   Text,
   Button,
 } from '../../components';
 import { colors, fontSize } from '../../../core/constants';
 import { hScale, scale } from '../../../core/utils/resolutions';
 import { useAppDispatch } from '../../redux/store';
-// import { fetchApiLogin, fetchApiUserProfile } from '@reducers';
-
-import LoginSchema from './LoginSchema';
+import { fetchApiLogin } from '../../redux/reducers';
 
 interface FormValues {
   username: string;
@@ -49,12 +46,17 @@ const LoginScreen = () => {
   } = useFormik({
     initialValues,
     initialErrors,
-    validationSchema: LoginSchema,
     onSubmit: () => onSubmit(),
   });
 
   const onSubmit = async () => {
+    let body = {
+      user_name: values?.username,
+      password: values?.password,
+    };
 
+    let response = await dispatch(fetchApiLogin(body));
+    console.log("response", response)
   };
 
   const onChangeUsername = (text: string) => {
