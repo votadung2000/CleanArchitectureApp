@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { handleErrorApi } from '@common';
+import { alertErrorApi } from '../../../../common';
 
 import {
     fetchApiLogin,
@@ -46,7 +46,7 @@ const authSlice = createSlice({
             })
             .addCase(fetchApiLogin.rejected, (state, action) => {
                 state.auth.isLoadingAuth = false;
-                handleErrorApi(action?.error);
+                alertErrorApi(action?.error);
             })
 
             .addCase(fetchApiRegister.pending, (state) => {
@@ -58,7 +58,7 @@ const authSlice = createSlice({
             })
             .addCase(fetchApiRegister.rejected, (state, action) => {
                 state.regis.isLoadingRegis = false;
-                handleErrorApi(action?.error);
+                alertErrorApi(action?.error);
             });
     },
 });
