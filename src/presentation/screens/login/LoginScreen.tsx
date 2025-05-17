@@ -45,7 +45,7 @@ const LoginScreen = () => {
   const {
     values,
     handleSubmit,
-    setFieldValue
+    setFieldValue,
   } = useFormik({
     initialValues,
     initialErrors,
@@ -58,12 +58,12 @@ const LoginScreen = () => {
   };
 
   const onChangeUsername = (text: string) => {
-    setFieldValue("username", text)
-  }
+    setFieldValue('username', text);
+  };
 
   const onChangePassword = (text: string) => {
-    setFieldValue("password", text)
-  }
+    setFieldValue('password', text);
+  };
 
   return (
     <View style={styles.container}>
@@ -75,7 +75,7 @@ const LoginScreen = () => {
           value={values.username}
           autoCapitalize="none"
           placeholderTextColor={colors.gray_C4C4C4}
-          placeholder='Username'
+          placeholder="Username"
           style={styles.input}
           onChangeText={text => onChangeUsername(text)}
         />
@@ -83,7 +83,7 @@ const LoginScreen = () => {
           value={values.password}
           autoCapitalize="none"
           placeholderTextColor={colors.gray_C4C4C4}
-          placeholder='Password'
+          placeholder="Password"
           style={styles.input}
           onChangeText={text => onChangePassword(text)}
         />

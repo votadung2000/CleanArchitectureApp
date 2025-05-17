@@ -1,3 +1,3 @@
-import alertErrorApi from './alertErrorApi'
+import alertErrorApi from './alertErrorApi';
 
-export { alertErrorApi }
+export { alertErrorApi };

@@ -6,4 +6,4 @@ export {
   colors,
   fontSize,
   radius,
-}
+};

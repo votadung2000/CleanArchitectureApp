@@ -1,37 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { alertErrorApi } from '../../../../common';
-
 import {
     fetchApiLogin,
     fetchApiRegister,
 } from './auth.api';
+import { LoginData, RegisterData } from './auth.types';
 
-interface AuthData {
-    token?: string;
-    created?: string;
-    expiry?: number;
-    isLoadingAuth?: boolean;
-}
-
-interface RegisData {
-    isLoadingRegis?: boolean;
-    data?: boolean;
-}
-
-const authData: AuthData = {
+const loginData: LoginData = {
     isLoadingAuth: false,
 };
 
-const regisData: RegisData = {
+const regisData: RegisterData = {
     isLoadingRegis: false,
-    data: false,
 };
 
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        auth: authData,
+        auth: loginData,
         regis: regisData,
     },
     reducers: {},
@@ -42,11 +28,10 @@ const authSlice = createSlice({
             })
             .addCase(fetchApiLogin.fulfilled, (state, action) => {
                 state.auth.isLoadingAuth = false;
-                state.auth = action.payload?.data;
+                state.auth = action.payload;
             })
-            .addCase(fetchApiLogin.rejected, (state, action) => {
+            .addCase(fetchApiLogin.rejected, (state) => {
                 state.auth.isLoadingAuth = false;
-                alertErrorApi(action?.error);
             })
 
             .addCase(fetchApiRegister.pending, (state) => {
@@ -54,11 +39,10 @@ const authSlice = createSlice({
             })
             .addCase(fetchApiRegister.fulfilled, (state, action) => {
                 state.regis.isLoadingRegis = false;
-                state.regis.data = action.payload;
+                state.regis.data = action.payload.data;
             })
-            .addCase(fetchApiRegister.rejected, (state, action) => {
+            .addCase(fetchApiRegister.rejected, (state) => {
                 state.regis.isLoadingRegis = false;
-                alertErrorApi(action?.error);
             });
     },
 });
