@@ -1,7 +1,3 @@
-export interface LoginParams {
-  user_name: string;
-  password: string;
-}
 export interface Login {
   token?: string;
   created?: string;

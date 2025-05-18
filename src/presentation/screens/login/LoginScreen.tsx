@@ -9,7 +9,7 @@ import {
 import { colors, fontSize } from '../../../core/constants';
 import { hScale, scale } from '../../../core/utils/resolutions';
 import { useAppDispatch } from '../../redux/store';
-import { loginUser } from '../../../domain/usecases/authUseCase/loginUseCase';
+import { fetchApiLogin } from '../../redux/reducers';
 
 interface FormValues {
   username: string;
@@ -50,7 +50,7 @@ const LoginScreen = () => {
       password: values?.password,
     };
 
-    let result = await loginUser(dispatch, params);
+    let result = await dispatch(fetchApiLogin(params));
     console.log('result', result);
   };
 

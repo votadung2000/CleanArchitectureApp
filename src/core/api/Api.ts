@@ -8,7 +8,7 @@ import axios, {
 import { getToken, clearToken } from '../storages';
 import ApiRoutes from './ApiRoutes';
 
-axios.defaults.baseURL = 'http://172.16.28.144:8082/';
+axios.defaults.baseURL = 'http://192.168.1.109:8082/';
 
 axios.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
