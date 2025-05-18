@@ -10,39 +10,39 @@ const loginData: LoginData = {
     isLoadingAuth: false,
 };
 
-const regisData: RegisterData = {
+const registerData: RegisterData = {
     isLoadingRegis: false,
 };
 
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        auth: loginData,
-        regis: regisData,
+        loginData,
+        registerData,
     },
     reducers: {},
     extraReducers(builder) {
         builder
             .addCase(fetchApiLogin.pending, (state) => {
-                state.auth.isLoadingAuth = true;
+                state.loginData.isLoadingAuth = true;
             })
             .addCase(fetchApiLogin.fulfilled, (state, action) => {
-                state.auth.isLoadingAuth = false;
-                state.auth = action.payload;
+                state.loginData.isLoadingAuth = false;
+                state.loginData = action.payload;
             })
             .addCase(fetchApiLogin.rejected, (state) => {
-                state.auth.isLoadingAuth = false;
+                state.loginData.isLoadingAuth = false;
             })
 
             .addCase(fetchApiRegister.pending, (state) => {
-                state.regis.isLoadingRegis = true;
+                state.registerData.isLoadingRegis = true;
             })
             .addCase(fetchApiRegister.fulfilled, (state, action) => {
-                state.regis.isLoadingRegis = false;
-                state.regis.data = action.payload.data;
+                state.registerData.isLoadingRegis = false;
+                state.registerData.data = action.payload.data;
             })
             .addCase(fetchApiRegister.rejected, (state) => {
-                state.regis.isLoadingRegis = false;
+                state.registerData.isLoadingRegis = false;
             });
     },
 });

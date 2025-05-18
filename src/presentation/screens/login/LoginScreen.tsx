@@ -9,7 +9,7 @@ import {
 import { colors, fontSize } from '../../../core/constants';
 import { hScale, scale } from '../../../core/utils/resolutions';
 import { useAppDispatch } from '../../redux/store';
-import { fetchApiLogin } from '../../redux/reducers';
+import { loginUser } from '../../../domain/usecases/authUseCase/loginUseCase';
 
 interface FormValues {
   username: string;
@@ -19,11 +19,6 @@ interface FormValues {
 interface FormErrors {
   username?: string;
   password?: string;
-}
-
-interface LoadingState {
-  isVisible: boolean;
-  onModalHide?: () => void;
 }
 
 const initialValues: FormValues = {
@@ -50,13 +45,13 @@ const LoginScreen = () => {
   });
 
   const onSubmit = async () => {
-    let body = {
+    let params = {
       user_name: values?.username,
       password: values?.password,
     };
 
-    let response = await dispatch(fetchApiLogin(body));
-    console.log("response", response)
+    let result = await loginUser(dispatch, params);
+    console.log('result', result);
   };
 
   const onChangeUsername = (text: string) => {
